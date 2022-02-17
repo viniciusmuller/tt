@@ -1,12 +1,14 @@
-use std::fs::File;
+use std::fs::{File, self};
+use std::path::PathBuf;
 use std::io::BufReader;
 use std::{thread, time};
 use notify_rust::Notification;
-use rodio::{Decoder, OutputStream, source::Source, Sink};
+use rodio::{Decoder, OutputStream, Sink};
 
 fn main() {
     loop {
-        let twenty_minutes = time::Duration::from_secs(20 * 60);
+        // let twenty_minutes = time::Duration::from_secs(20 * 60);
+        let twenty_minutes = time::Duration::from_secs(1);
         thread::sleep(twenty_minutes);
         notify("Look away for 20 seconds!");
         let twenty_seconds = time::Duration::from_secs(20);
@@ -17,10 +19,13 @@ fn main() {
 }
 
 fn notify(message: &str) {
+    let icon_path = PathBuf::from("assets/ttlogo.jpg");
+    let absolute_icon_path = fs::canonicalize(icon_path).unwrap();
+
     Notification::new()
         .summary("Twenty Twenty")
         .body(message)
-        // .icon("firefox")
+        .icon(absolute_icon_path.to_str().unwrap())
         .show()
         .unwrap();
 }

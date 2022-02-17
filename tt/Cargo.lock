@@ -1374,7 +1374,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "twentytwenty"
+name = "tt"
 version = "0.1.0"
 dependencies = [
  "notify-rust",
