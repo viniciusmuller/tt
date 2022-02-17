@@ -7,8 +7,7 @@ use rodio::{Decoder, OutputStream, Sink};
 
 fn main() {
     loop {
-        // let twenty_minutes = time::Duration::from_secs(20 * 60);
-        let twenty_minutes = time::Duration::from_secs(1);
+        let twenty_minutes = time::Duration::from_secs(20 * 60);
         thread::sleep(twenty_minutes);
         notify("Look away for 20 seconds!");
         let twenty_seconds = time::Duration::from_secs(20);
